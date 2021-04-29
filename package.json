@@ -1,5 +1,5 @@
 {
-  "name": "redoc",
+  "name": "@primerai/redoc",
   "version": "2.0.0-rc.53",
   "description": "ReDoc",
   "repository": {
@@ -10,8 +10,11 @@
     "node": ">=6.9",
     "npm": ">=3.0.0"
   },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "license": "UNLICENSED",
   "author": "Roman Hotsiy <gotsijroman@gmail.com>",
-  "license": "MIT",
   "keywords": [
     "OpenAPI",
     "OpenAPI Specification",
