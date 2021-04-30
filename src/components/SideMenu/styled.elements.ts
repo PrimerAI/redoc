@@ -106,13 +106,16 @@ export const menuItemDepth = {
     color: ${(props) => props.theme.sidebar.textColor};
   `,
   1: css`
-    font-size: 0.929em;
+    font-size: ${theme.fontSizes.$3};
     text-transform: ${({ theme }) => theme.sidebar.level1Items.textTransform};
+    font-weight: ${theme.fontWeights.$heading};
+    color: ${theme.colors.$text.dark};
     &:hover {
       color: ${(props) => props.theme.sidebar.activeTextColor};
     }
   `,
   2: css`
+    font-size: ${theme.fontSizes.$2};
     color: ${(props) => props.theme.sidebar.textColor};
   `,
 };
@@ -142,11 +145,6 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
   font-family: ${(props) => props.theme.typography.headings.fontFamily};
   ${(props) => menuItemDepth[props.depth]};
   background-color: ${(props) => (props.active ? menuItemActiveBg(props.depth, props) : '')};
-
-  &.-depth1 {
-    font-weight: ${theme.fontWeights.$heading};
-    color: ${theme.colors.$text.dark};
-  }
 
   ${(props) => (props.deprecated && deprecatedCss) || ''};
 

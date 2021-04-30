@@ -110,7 +110,7 @@ const defaultTheme: ThemeInterface = {
     fontWeightRegular: theme.fontWeights.$body,
     fontWeightBold: theme.fontWeights.$heading,
     fontWeightLight: theme.fontWeights.$body,
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: theme.fonts.$primary,
     smoothing: 'antialiased',
     optimizeSpeed: true,
     headings: {

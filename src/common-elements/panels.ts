@@ -1,6 +1,5 @@
 import { SECTION_ATTR } from '../services/MenuStore';
 import styled, { media } from '../styled-components';
-import { theme } from '@primerai/thread';
 
 export const MiddlePanel = styled.div<{ compact?: boolean }>`
   width: calc(100% - ${(props) => props.theme.rightPanel.width});
@@ -22,7 +21,6 @@ export const Section = styled.div.attrs((props) => ({
 
   &:last-child {
     min-height: calc(100vh + 1px);
-    border-right: ${theme.borders.$muted};
   }
 
   & > &:last-child {
@@ -43,7 +41,7 @@ export const Section = styled.div.attrs((props) => ({
       width: 100%;
       display: block;
       content: '';
-      border-bottom: ${theme.borders.$default};
+      border-bottom: 1px solid #d7dbdd6b;
     }
     `) ||
     ''}
