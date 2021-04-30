@@ -5,6 +5,10 @@ export const PrismDiv = styled.div`
   * Based on prism-dark.css
   */
 
+  .redoc-json {
+    color: #c4c8d0;
+  }
+
   code[class*='language-'],
   pre[class*='language-'] {
     /* color: white;
@@ -61,11 +65,11 @@ export const PrismDiv = styled.div`
   .token.number,
   .token.constant,
   .token.symbol {
-    color: #4a8bb3;
+    color: #ffbb5c;
   }
 
   .token.boolean {
-    color: #e64441;
+    color: #6d72f1;
   }
 
   .token.selector,
@@ -74,7 +78,7 @@ export const PrismDiv = styled.div`
   .token.char,
   .token.builtin,
   .token.inserted {
-    color: #a0fbaa;
+    color: #0bc48a;
     & + a,
     & + a:visited {
       color: #4ed2ba;
@@ -83,7 +87,7 @@ export const PrismDiv = styled.div`
   }
 
   .token.property.string {
-    color: white;
+    color: #c4c8d0;
   }
 
   .token.operator,

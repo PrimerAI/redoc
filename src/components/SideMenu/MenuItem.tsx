@@ -4,10 +4,8 @@ import * as React from 'react';
 
 import { ShelfIcon } from '../../common-elements/shelfs';
 import { IMenuItem, OperationModel } from '../../services';
-import { shortenHTTPVerb } from '../../utils/openapi';
 import { MenuItems } from './MenuItems';
-import { MenuItemLabel, MenuItemLi, MenuItemTitle, OperationBadge } from './styled.elements';
-import { l } from '../../services/Labels';
+import { MenuItemLabel, MenuItemLi, MenuItemTitle } from './styled.elements';
 
 export interface MenuItemProps {
   item: IMenuItem;
@@ -57,11 +55,7 @@ export class MenuItem extends React.Component<MenuItemProps> {
           </MenuItemLabel>
         )}
         {!withoutChildren && item.items && item.items.length > 0 && (
-          <MenuItems
-            expanded={item.expanded}
-            items={item.items}
-            onActivate={this.props.onActivate}
-          />
+          <MenuItems expanded={true} items={item.items} onActivate={this.props.onActivate} />
         )}
       </MenuItemLi>
     );
@@ -91,11 +85,11 @@ export class OperationMenuItemContent extends React.Component<OperationMenuItemC
         deprecated={item.deprecated}
         ref={this.ref}
       >
-        {item.isWebhook ? (
+        {/* {item.isWebhook ? (
           <OperationBadge type="hook">{l('webhook')}</OperationBadge>
         ) : (
           <OperationBadge type={item.httpVerb}>{shortenHTTPVerb(item.httpVerb)}</OperationBadge>
-        )}
+        )} */}
         <MenuItemTitle width="calc(100% - 38px)">
           {item.name}
           {this.props.children}

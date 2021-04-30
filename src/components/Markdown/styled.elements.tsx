@@ -1,20 +1,21 @@
 import { headerCommonMixin, linkifyMixin } from '../../common-elements';
 import { PrismDiv } from '../../common-elements/PrismDiv';
 import styled, { css, extensionsHook, ResolvedThemeInterface } from '../../styled-components';
+import { theme } from '@primerai/thread';
 
 import { StyledComponent } from 'styled-components';
 
 export const linksCss = css`
   a {
     text-decoration: none;
-    color: ${props => props.theme.typography.links.color};
+    color: ${(props) => props.theme.typography.links.color};
 
     &:visited {
-      color: ${props => props.theme.typography.links.visited};
+      color: ${(props) => props.theme.typography.links.visited};
     }
 
     &:hover {
-      color: ${props => props.theme.typography.links.hover};
+      color: ${(props) => props.theme.typography.links.hover};
     }
   }
 `;
@@ -26,10 +27,9 @@ export const StyledMarkdownBlock = styled(
     { compact?: boolean; inline?: boolean }
   >,
 )`
-
-  font-family: ${props => props.theme.typography.fontFamily};
-  font-weight: ${props => props.theme.typography.fontWeightRegular};
-  line-height: ${props => props.theme.typography.lineHeight};
+  font-family: ${(props) => props.theme.typography.fontFamily};
+  font-weight: ${(props) => props.theme.typography.fontWeightRegular};
+  line-height: ${(props) => props.theme.typography.lineHeight};
 
   p {
     &:last-child {
@@ -56,35 +56,35 @@ export const StyledMarkdownBlock = styled(
 
   h1 {
     ${headerCommonMixin(1)};
-    color: ${props => props.theme.colors.primary.main};
+    color: ${(props) => props.theme.colors.primary.main};
     margin-top: 0;
   }
 
   h2 {
     ${headerCommonMixin(2)};
-    color: ${props => props.theme.colors.text.primary};
+    color: ${(props) => props.theme.colors.text.primary};
   }
 
   code {
     color: ${({ theme }) => theme.typography.code.color};
     background-color: ${({ theme }) => theme.typography.code.backgroundColor};
 
-    font-family: ${props => props.theme.typography.code.fontFamily};
-    border-radius: 2px;
-    border: 1px solid rgba(38, 50, 56, 0.1);
+    font-family: ${(props) => props.theme.typography.code.fontFamily};
+    border-radius: 4px;
+    border: ${theme.borders.$muted};
     padding: 0 ${({ theme }) => theme.spacing.unit}px;
-    font-size: ${props => props.theme.typography.code.fontSize};
+    font-size: ${(props) => props.theme.typography.code.fontSize};
     font-weight: ${({ theme }) => theme.typography.code.fontWeight};
 
     word-break: break-word;
   }
 
   pre {
-    font-family: ${props => props.theme.typography.code.fontFamily};
-    white-space:${({ theme }) => (theme.typography.code.wrap ? 'pre-wrap' : 'pre')};
+    font-family: ${(props) => props.theme.typography.code.fontFamily};
+    white-space: ${({ theme }) => (theme.typography.code.wrap ? 'pre-wrap' : 'pre')};
     background-color: ${({ theme }) => theme.codeBlock.backgroundColor};
     color: white;
-    padding: ${props => props.theme.spacing.unit * 4}px;
+    padding: ${(props) => props.theme.spacing.unit * 4}px;
     overflow-x: auto;
     line-height: normal;
     border-radius: 0px;
@@ -121,7 +121,8 @@ export const StyledMarkdownBlock = styled(
     margin: 0;
     margin-bottom: 1em;
 
-    ul, ol {
+    ul,
+    ol {
       margin-bottom: 0;
       margin-top: 0;
     }
@@ -141,7 +142,7 @@ export const StyledMarkdownBlock = styled(
 
   table tr {
     background-color: #fff;
-    border-top: 1px solid #ccc;
+    border-top: ${theme.borders.$muted};
 
     &:nth-child(2n) {
       background-color: ${({ theme }) => theme.schema.nestedBackground};
@@ -151,7 +152,7 @@ export const StyledMarkdownBlock = styled(
   table th,
   table td {
     padding: 6px 13px;
-    border: 1px solid #ddd;
+    border: ${theme.borders.$muted};
   }
 
   table th {

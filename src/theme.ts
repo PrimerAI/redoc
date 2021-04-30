@@ -1,8 +1,11 @@
 import { darken, desaturate, lighten, readableColor, transparentize } from 'polished';
+import { theme } from '@primerai/thread';
+
+const { colors } = theme;
 
 const defaultTheme: ThemeInterface = {
   spacing: {
-    unit: 5,
+    unit: 4,
     sectionHorizontal: ({ spacing }) => spacing.unit * 8,
     sectionVertical: ({ spacing }) => spacing.unit * 8,
   },
@@ -14,13 +17,13 @@ const defaultTheme: ThemeInterface = {
   colors: {
     tonalOffset: 0.2,
     primary: {
-      main: '#32329f',
+      main: colors.$blue.base,
       light: ({ colors }) => lighten(colors.tonalOffset, colors.primary.main),
       dark: ({ colors }) => darken(colors.tonalOffset, colors.primary.main),
       contrastText: ({ colors }) => readableColor(colors.primary.main),
     },
     success: {
-      main: '#1d8127',
+      main: colors.$mint.dark,
       light: ({ colors }) => lighten(colors.tonalOffset * 2, colors.success.main),
       dark: ({ colors }) => darken(colors.tonalOffset, colors.success.main),
       contrastText: ({ colors }) => readableColor(colors.success.main),
@@ -32,7 +35,7 @@ const defaultTheme: ThemeInterface = {
       contrastText: '#ffffff',
     },
     error: {
-      main: '#d41f1c',
+      main: colors.$red.dark,
       light: ({ colors }) => lighten(colors.tonalOffset, colors.error.main),
       dark: ({ colors }) => darken(colors.tonalOffset, colors.error.main),
       contrastText: ({ colors }) => readableColor(colors.error.main),
@@ -42,12 +45,12 @@ const defaultTheme: ThemeInterface = {
       100: '#F5F5F5',
     },
     text: {
-      primary: '#333333',
-      secondary: ({ colors }) => lighten(colors.tonalOffset, colors.text.primary),
+      primary: colors.$text.default,
+      secondary: colors.$text.muted,
     },
     border: {
-      dark: 'rgba(0,0,0, 0.1)',
-      light: '#ffffff',
+      dark: colors.$border.default,
+      light: colors.$border.muted,
     },
     responses: {
       success: {
@@ -72,56 +75,56 @@ const defaultTheme: ThemeInterface = {
       },
     },
     http: {
-      get: '#2F8132',
-      post: '#186FAF',
-      put: '#95507c',
+      get: colors.$mint.base,
+      post: colors.$cyan.base,
+      put: colors.$orange.base,
       options: '#947014',
       patch: '#bf581d',
-      delete: '#cc3333',
+      delete: colors.$red.base,
       basic: '#707070',
       link: '#07818F',
       head: '#A23DAD',
     },
   },
   schema: {
-    linesColor: theme =>
+    linesColor: (theme) =>
       lighten(
         theme.colors.tonalOffset,
         desaturate(theme.colors.tonalOffset, theme.colors.primary.main),
       ),
     defaultDetailsWidth: '75%',
-    typeNameColor: theme => theme.colors.text.secondary,
-    typeTitleColor: theme => theme.schema.typeNameColor,
-    requireLabelColor: theme => theme.colors.error.main,
-    labelsTextSize: '0.9em',
+    typeNameColor: (theme) => theme.colors.text.secondary,
+    typeTitleColor: (theme) => theme.schema.typeNameColor,
+    requireLabelColor: (theme) => theme.colors.error.main,
+    labelsTextSize: theme.fontSizes.$1,
     nestingSpacing: '1em',
-    nestedBackground: '#fafafa',
+    nestedBackground: '#f9fafb',
     arrow: {
       size: '1.1em',
-      color: theme => theme.colors.text.secondary,
+      color: (theme) => theme.colors.text.secondary,
     },
   },
   typography: {
-    fontSize: '14px',
-    lineHeight: '1.5em',
-    fontWeightRegular: '400',
-    fontWeightBold: '600',
-    fontWeightLight: '300',
+    fontSize: theme.fontSizes.$3,
+    lineHeight: theme.lineHeights.$body,
+    fontWeightRegular: theme.fontWeights.$body,
+    fontWeightBold: theme.fontWeights.$heading,
+    fontWeightLight: theme.fontWeights.$body,
     fontFamily: 'Roboto, sans-serif',
     smoothing: 'antialiased',
     optimizeSpeed: true,
     headings: {
-      fontFamily: 'Montserrat, sans-serif',
-      fontWeight: '400',
-      lineHeight: '1.6em',
+      fontFamily: 'IBM Plex Sans, system-ui',
+      fontWeight: theme.fontWeights.$heading,
+      lineHeight: theme.lineHeights.$heading,
     },
     code: {
-      fontSize: '13px',
-      fontFamily: 'Courier, monospace',
-      lineHeight: ({ typography }) => typography.lineHeight,
-      fontWeight: ({ typography }) => typography.fontWeightRegular,
-      color: '#e53935',
-      backgroundColor: 'rgba(38, 50, 56, 0.05)',
+      fontSize: theme.fontSizes.$2,
+      fontFamily: 'IBM Plex Mono, Courier, monospace',
+      lineHeight: ({ typography }) => typography.lineHeight as number,
+      fontWeight: ({ typography }) => typography.fontWeightRegular as number,
+      color: colors.$grape.base,
+      backgroundColor: colors.$background.tint1,
       wrap: false,
     },
     links: {
@@ -132,9 +135,9 @@ const defaultTheme: ThemeInterface = {
   },
   sidebar: {
     width: '260px',
-    backgroundColor: '#fafafa',
-    textColor: '#333333',
-    activeTextColor: theme =>
+    backgroundColor: colors.$background.tint1,
+    textColor: colors.$text.default,
+    activeTextColor: (theme) =>
       theme.sidebar.textColor !== defaultTheme.sidebar!.textColor
         ? theme.sidebar.textColor
         : theme.colors.primary.main,
@@ -146,7 +149,7 @@ const defaultTheme: ThemeInterface = {
     },
     arrow: {
       size: '1.5em',
-      color: theme => theme.sidebar.textColor,
+      color: (theme) => theme.sidebar.textColor,
     },
   },
   logo: {
@@ -155,12 +158,12 @@ const defaultTheme: ThemeInterface = {
     gutter: '2px',
   },
   rightPanel: {
-    backgroundColor: '#263238',
-    width: '40%',
+    backgroundColor: colors.$grayScale.g9,
+    width: '48%',
     textColor: '#ffffff',
   },
   codeBlock: {
-    backgroundColor: ({ rightPanel }) => darken(0.1, rightPanel.backgroundColor),
+    backgroundColor: ({ rightPanel }) => lighten(0.07, rightPanel.backgroundColor),
   },
 };
 
@@ -170,7 +173,7 @@ export function resolveTheme(theme: ThemeInterface): ResolvedThemeInterface {
   const resolvedValues = {};
   let counter = 0;
   const setProxy = (obj, path: string) => {
-    Object.keys(obj).forEach(k => {
+    Object.keys(obj).forEach((k) => {
       const currentPath = (path ? path + '.' : '') + k;
       const val = obj[k];
       if (typeof val === 'function') {
@@ -200,6 +203,8 @@ export function resolveTheme(theme: ThemeInterface): ResolvedThemeInterface {
   return JSON.parse(JSON.stringify(theme));
 }
 
+type CSSValue = string | number;
+
 export interface ColorSetting {
   main: string;
   light: string;
@@ -215,9 +220,9 @@ export interface HTTPResponseColos {
 
 export interface FontSettings {
   fontSize: string;
-  fontWeight: string;
-  fontFamily: string;
-  lineHeight: string;
+  fontWeight: CSSValue;
+  fontFamily: CSSValue;
+  lineHeight: CSSValue;
   color: string;
 }
 
@@ -284,10 +289,10 @@ export interface ResolvedThemeInterface {
   };
   typography: {
     fontSize: string;
-    lineHeight: string;
-    fontWeightLight: string;
-    fontWeightRegular: string;
-    fontWeightBold: string;
+    lineHeight: CSSValue;
+    fontWeightLight: CSSValue;
+    fontWeightRegular: CSSValue;
+    fontWeightBold: CSSValue;
     fontFamily: string;
 
     smoothing: string;
@@ -299,8 +304,8 @@ export interface ResolvedThemeInterface {
     };
     headings: {
       fontFamily: string;
-      fontWeight: string;
-      lineHeight: string;
+      fontWeight: CSSValue;
+      lineHeight: CSSValue;
     };
 
     links: {
