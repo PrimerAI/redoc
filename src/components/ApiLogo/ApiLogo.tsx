@@ -24,7 +24,7 @@ export class ApiLogo extends React.Component<{ info: OpenAPIInfo }> {
     const logoInfo = info['x-logo'];
     const hasXLogo = logoInfo && logoInfo.url;
 
-    return !hasXLogo ? (
+    return hasXLogo ? (
       <Xlogo logoInfo={logoInfo} info={info} />
     ) : (
       <div style={{ height: 28, margin: '40px 16px' }} className="svg-logo">
