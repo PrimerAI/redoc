@@ -51,9 +51,17 @@ export class MenuBuilder {
     options: RedocNormalizedOptions,
   ): ContentItemModel[] {
     const spec = parser.spec;
+    console.log('🚀 ~ file: MenuBuilder.ts ~ line 54 ~ MenuBuilder ~ spec', spec);
 
     const items: ContentItemModel[] = [];
-    const tagsMap = MenuBuilder.getTagsWithOperations(spec);
+    const allTags = MenuBuilder.getTagsWithOperations(spec);
+    const tagsMap: TagsInfoMap = {};
+    for (const key in allTags) {
+      if (!!allTags[key].operations.length) {
+        tagsMap[key] = allTags[key];
+      }
+    }
+    console.log('🚀 ~ file: MenuBuilder.ts ~ line 58 ~ MenuBuilder ~ tagsMap', tagsMap, allTags);
     items.push(...MenuBuilder.addMarkdownItems(spec.info.description || '', undefined, 1, options));
     if (spec['x-tagGroups'] && spec['x-tagGroups'].length > 0) {
       items.push(
@@ -86,7 +94,7 @@ export class MenuBuilder {
     }
 
     const mapHeadingsDeep = (_parent, items, depth = 1) =>
-      items.map(heading => {
+      items.map((heading) => {
         const group = new GroupModel('section', heading, _parent);
         group.depth = depth;
         if (heading.items) {
@@ -118,6 +126,7 @@ export class MenuBuilder {
     options: RedocNormalizedOptions,
   ): GroupModel[] {
     const res: GroupModel[] = [];
+    console.log('🚀 ~ file: MenuBuilder.ts ~ line 123 ~ MenuBuilder ~ item', groups);
     for (const group of groups) {
       const item = new GroupModel('group', group, parent);
       item.depth = GROUP_DEPTH;
@@ -149,7 +158,7 @@ export class MenuBuilder {
       tagNames = group.tags;
     }
 
-    const tags = tagNames.map(tagName => {
+    const tags = tagNames.map((tagName) => {
       if (!tagsMap[tagName]) {
         console.warn(`Non-existing tag "${tagName}" is added to the group "${group!.name}"`);
         return null;
@@ -218,7 +227,7 @@ export class MenuBuilder {
   static getTagsWithOperations(spec: OpenAPISpec): TagsInfoMap {
     const tags: TagsInfoMap = {};
     for (const tag of spec.tags || []) {
-      tags[tag.name] = { ...tag, operations: [] };
+      tags[tag.name] = { ...tag, operations: [], name: tag.name.replace(/.*\//, '') };
     }
 
     getTags(spec.paths);
@@ -227,6 +236,7 @@ export class MenuBuilder {
     }
 
     function getTags(paths: OpenAPIPaths, isWebhook?: boolean) {
+      // console.log('🚀 ~ file: MenuBuilder.ts ~ line 230 ~ MenuBuilder ~ getTags ~ paths', paths);
       for (const pathName of Object.keys(paths)) {
         const path = paths[pathName];
         const operations = Object.keys(path).filter(isOperationName);

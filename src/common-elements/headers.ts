@@ -1,6 +1,14 @@
 import styled, { css, extensionsHook } from '../styled-components';
 import { colors, theme } from '@primerai/thread';
 
+const defaultStyles = {
+  fontFamily: theme.fonts.$primary,
+  fontWeight: theme.fontWeights.$heading,
+  lineHeight: theme.lineHeights.$heading,
+  letterSpacing: theme.letterSpacings.$heading,
+  color: colors.$text.dark,
+};
+
 const headerFontSize = {
   1: theme.fontSizes.$6,
   2: theme.fontSizes.$5,
@@ -14,9 +22,9 @@ export const headerCommonMixin = (level) => css`
   line-height: ${({ theme }) => theme.typography.headings.lineHeight};
 `;
 
-export const H1 = styled.h1`
+export const H1 = styled.h2`
   ${headerCommonMixin(1)};
-  color: ${({ theme }) => theme.colors.primary.main};
+  color: ${colors.$text.dark};
 
   ${extensionsHook('H1')};
 `;
@@ -54,3 +62,8 @@ export const UnderlinedHeader = styled.h5`
 
   ${extensionsHook('UnderlinedHeader')};
 `;
+
+export const Heading = styled.h2({
+  ...defaultStyles,
+  fontSize: theme.fontSizes.$5,
+});

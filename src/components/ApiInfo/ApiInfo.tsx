@@ -7,13 +7,7 @@ import { MiddlePanel, Row, Section } from '../../common-elements/';
 import { ExternalDocumentation } from '../ExternalDocumentation/ExternalDocumentation';
 import { Markdown } from '../Markdown/Markdown';
 import { StyledMarkdownBlock } from '../Markdown/styled.elements';
-import {
-  ApiHeader,
-  DownloadButton,
-  InfoSpan,
-  InfoSpanBox,
-  InfoSpanBoxWrap,
-} from './styled.elements';
+import { DownloadButton, InfoSpan, InfoSpanBox, InfoSpanBoxWrap } from './styled.elements';
 
 export interface ApiInfoProps {
   store: AppStore;
@@ -68,15 +62,10 @@ export class ApiInfo extends React.Component<ApiInfoProps> {
       )) ||
       null;
 
-    const version = (info.version && <span>({info.version})</span>) || null;
-
     return (
       <Section>
         <Row>
           <MiddlePanel className="api-info">
-            <ApiHeader>
-              {info.title} {version}
-            </ApiHeader>
             {!hideDownloadButton && (
               <p>
                 Download OpenAPI specification:
