@@ -51,7 +51,6 @@ export class MenuBuilder {
     options: RedocNormalizedOptions,
   ): ContentItemModel[] {
     const spec = parser.spec;
-    console.log('🚀 ~ file: MenuBuilder.ts ~ line 54 ~ MenuBuilder ~ spec', spec);
 
     const items: ContentItemModel[] = [];
     const allTags = MenuBuilder.getTagsWithOperations(spec);
@@ -61,7 +60,6 @@ export class MenuBuilder {
         tagsMap[key] = allTags[key];
       }
     }
-    console.log('🚀 ~ file: MenuBuilder.ts ~ line 58 ~ MenuBuilder ~ tagsMap', tagsMap, allTags);
     items.push(...MenuBuilder.addMarkdownItems(spec.info.description || '', undefined, 1, options));
     if (spec['x-tagGroups'] && spec['x-tagGroups'].length > 0) {
       items.push(
@@ -126,7 +124,6 @@ export class MenuBuilder {
     options: RedocNormalizedOptions,
   ): GroupModel[] {
     const res: GroupModel[] = [];
-    console.log('🚀 ~ file: MenuBuilder.ts ~ line 123 ~ MenuBuilder ~ item', groups);
     for (const group of groups) {
       const item = new GroupModel('group', group, parent);
       item.depth = GROUP_DEPTH;
@@ -236,7 +233,6 @@ export class MenuBuilder {
     }
 
     function getTags(paths: OpenAPIPaths, isWebhook?: boolean) {
-      // console.log('🚀 ~ file: MenuBuilder.ts ~ line 230 ~ MenuBuilder ~ getTags ~ paths', paths);
       for (const pathName of Object.keys(paths)) {
         const path = paths[pathName];
         const operations = Object.keys(path).filter(isOperationName);

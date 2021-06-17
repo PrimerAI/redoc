@@ -14,7 +14,6 @@ export class SideMenu extends React.Component<{ menu: MenuStore; className?: str
 
   render() {
     const store = this.props.menu;
-    console.log('🚀 ~ file: SideMenu.tsx ~ line 17 ~ SideMenu ~ render ~ store', store);
     return (
       <PerfectScrollbarWrap
         updateFn={this.saveScrollUpdate}
