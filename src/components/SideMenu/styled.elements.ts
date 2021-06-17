@@ -147,6 +147,7 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
   background-color: ${(props) => (props.active ? menuItemActiveBg(props.depth, props) : '')};
 
   ${(props) => (props.deprecated && deprecatedCss) || ''};
+  font-size: 15px;
 
   &:hover {
     background-color: ${(props) => menuItemActiveBg(props.depth, props)};
@@ -167,6 +168,7 @@ export const MenuItemTitle = styled.span<{ width?: string }>`
   width: ${(props) => (props.width ? props.width : 'auto')};
   overflow: hidden;
   text-overflow: ellipsis;
+  text-transform: capitalize;
 `;
 
 export const RedocAttribution = styled.div`

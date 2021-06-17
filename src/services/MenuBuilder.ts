@@ -53,7 +53,13 @@ export class MenuBuilder {
     const spec = parser.spec;
 
     const items: ContentItemModel[] = [];
-    const tagsMap = MenuBuilder.getTagsWithOperations(spec);
+    const allTags = MenuBuilder.getTagsWithOperations(spec);
+    const tagsMap: TagsInfoMap = {};
+    for (const key in allTags) {
+      if (!!allTags[key].operations.length) {
+        tagsMap[key] = allTags[key];
+      }
+    }
     items.push(...MenuBuilder.addMarkdownItems(spec.info.description || '', undefined, 1, options));
     if (spec['x-tagGroups'] && spec['x-tagGroups'].length > 0) {
       items.push(
@@ -86,7 +92,7 @@ export class MenuBuilder {
     }
 
     const mapHeadingsDeep = (_parent, items, depth = 1) =>
-      items.map(heading => {
+      items.map((heading) => {
         const group = new GroupModel('section', heading, _parent);
         group.depth = depth;
         if (heading.items) {
@@ -149,7 +155,7 @@ export class MenuBuilder {
       tagNames = group.tags;
     }
 
-    const tags = tagNames.map(tagName => {
+    const tags = tagNames.map((tagName) => {
       if (!tagsMap[tagName]) {
         console.warn(`Non-existing tag "${tagName}" is added to the group "${group!.name}"`);
         return null;
@@ -218,7 +224,7 @@ export class MenuBuilder {
   static getTagsWithOperations(spec: OpenAPISpec): TagsInfoMap {
     const tags: TagsInfoMap = {};
     for (const tag of spec.tags || []) {
-      tags[tag.name] = { ...tag, operations: [] };
+      tags[tag.name] = { ...tag, operations: [], name: tag.name.replace(/.*\//, '') };
     }
 
     getTags(spec.paths);

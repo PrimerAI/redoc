@@ -55,7 +55,11 @@ export class MenuItem extends React.Component<MenuItemProps> {
           </MenuItemLabel>
         )}
         {!withoutChildren && item.items && item.items.length > 0 && (
-          <MenuItems expanded={true} items={item.items} onActivate={this.props.onActivate} />
+          <MenuItems
+            expanded={item.expanded}
+            items={item.items}
+            onActivate={this.props.onActivate}
+          />
         )}
       </MenuItemLi>
     );
