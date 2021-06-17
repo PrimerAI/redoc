@@ -29,14 +29,14 @@ export const H1 = styled.h2`
   ${extensionsHook('H1')};
 `;
 
-export const H2 = styled.h2`
+export const H2 = styled.h3`
   ${headerCommonMixin(2)};
   color: ${theme.colors.$text.dark};
 
   ${extensionsHook('H2')};
 `;
 
-export const H3 = styled.h2`
+export const H3 = styled.h4`
   ${headerCommonMixin(3)};
   color: ${theme.colors.$text.dark};
 

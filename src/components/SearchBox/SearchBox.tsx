@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { SearchNavIcon } from '@primerai/thread';
 import { IMenuItem } from '../../services/MenuStore';
 import { SearchStore } from '../../services/SearchStore';
 import { MenuItem } from '../SideMenu/MenuItem';
@@ -11,7 +11,7 @@ import { bind, debounce } from 'decko';
 import { PerfectScrollbarWrap } from '../../common-elements/perfect-scrollbar';
 import {
   ClearIcon,
-  SearchIcon,
+  SearchIconWrapper,
   SearchInput,
   SearchResultsBox,
   SearchWrap,
@@ -102,7 +102,7 @@ export class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxStat
   @bind
   @debounce(400)
   searchCallback(searchTerm: string) {
-    this.props.search.search(searchTerm).then(res => {
+    this.props.search.search(searchTerm).then((res) => {
       this.setResults(res, searchTerm);
     });
   }
@@ -124,7 +124,7 @@ export class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxStat
 
   render() {
     const { activeItemIdx } = this.state;
-    const results = this.state.results.map(res => ({
+    const results = this.state.results.map((res) => ({
       item: this.props.getItemById(res.meta)!,
       score: res.score,
     }));
@@ -134,7 +134,9 @@ export class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxStat
     return (
       <SearchWrap role="search">
         {this.state.term && <ClearIcon onClick={this.clear}>×</ClearIcon>}
-        <SearchIcon />
+        <SearchIconWrapper>
+          <SearchNavIcon />
+        </SearchIconWrapper>
         <SearchInput
           value={this.state.term}
           onKeyDown={this.handleKeyDown}

@@ -5,19 +5,21 @@ import styled from '../../styled-components';
 import { MenuItemLabel } from '../SideMenu/styled.elements';
 
 export const SearchWrap = styled.div`
-  padding: 5px 0;
+  padding: 12px 0;
+  position: relative;
 `;
 
 export const SearchInput = styled.input.attrs(() => ({
   className: 'search-input',
 }))`
+  border-radius: 999px;
   width: calc(100% - ${(props) => props.theme.spacing.unit * 8}px);
   box-sizing: border-box;
   margin: 0 ${(props) => props.theme.spacing.unit * 4}px;
-  padding: 5px ${(props) => props.theme.spacing.unit * 2}px 5px
-    ${(props) => props.theme.spacing.unit * 5}px;
+  padding: 7px ${(props) => props.theme.spacing.unit * 2}px 7px
+    ${(props) => props.theme.spacing.unit * 8}px;
   border: 0;
-  border-bottom: 1px solid
+  border: 1px solid
     ${({ theme }) =>
       (getLuminance(theme.sidebar.backgroundColor) > 0.5 ? darken : lighten)(
         0.1,
@@ -26,8 +28,21 @@ export const SearchInput = styled.input.attrs(() => ({
   font-family: ${({ theme }) => theme.typography.fontFamily};
   font-size: 13px;
   color: ${(props) => props.theme.sidebar.textColor};
-  background-color: transparent;
+  background: #fff;
   outline: none;
+`;
+
+export const SearchIconWrapper = styled.div`
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translate(70%, -53%);
+  color: #6f757b;
+
+  svg {
+    width: 0.85em;
+    height: 0.85em;
+  }
 `;
 
 export const SearchIcon = styled((props: { className?: string }) => (
@@ -94,8 +109,8 @@ export const ClearIcon = styled.i`
   right: ${(props) => props.theme.spacing.unit * 4}px;
   line-height: 2em;
   vertical-align: middle;
-  margin-right: 2px;
+  margin-right: 12px;
   cursor: pointer;
   font-style: normal;
-  color: '#666';
+  color: '#6f757b';
 `;

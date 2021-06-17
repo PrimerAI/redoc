@@ -147,6 +147,7 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
   background-color: ${(props) => (props.active ? menuItemActiveBg(props.depth, props) : '')};
 
   ${(props) => (props.deprecated && deprecatedCss) || ''};
+  font-size: 15px;
 
   &:hover {
     background-color: ${(props) => menuItemActiveBg(props.depth, props)};

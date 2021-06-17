@@ -17,7 +17,9 @@ export const MiddlePanel = styled.div<{ compact?: boolean }>`
 export const Section = styled.div.attrs((props) => ({
   [SECTION_ATTR]: props.id,
 }))<{ underlined?: boolean }>`
-  padding: ${(props) => props.theme.spacing.sectionVertical}px 0;
+  &:not(:empty) {
+    padding: ${(props) => props.theme.spacing.sectionVertical}px 0;
+  }
 
   h2 {
     margin-top: 0;

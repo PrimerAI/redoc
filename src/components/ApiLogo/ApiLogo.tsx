@@ -28,7 +28,7 @@ export class ApiLogo extends React.Component<{ info: OpenAPIInfo }> {
     return hasXLogo ? (
       <Xlogo logoInfo={logoInfo} info={info} />
     ) : (
-      <div style={{ margin: '0 16px' }}>
+      <div style={{ margin: 16, marginTop: 24, marginBottom: 0 }}>
         <Heading as="h1">Engines API Docs</Heading>
       </div>
     );

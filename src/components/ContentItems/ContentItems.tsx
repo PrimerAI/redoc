@@ -17,7 +17,7 @@ export class ContentItems extends React.Component<{
     if (items.length === 0) {
       return null;
     }
-    return items.map(item => {
+    return items.map((item) => {
       return <ContentItem key={item.id} item={item} />;
     });
   }
@@ -61,14 +61,13 @@ export class ContentItem extends React.Component<ContentItemProps> {
   }
 }
 
-const middlePanelWrap = component => <MiddlePanel compact={true}>{component}</MiddlePanel>;
+const middlePanelWrap = (component) => <MiddlePanel compact={true}>{component}</MiddlePanel>;
 
 @observer
 export class SectionItem extends React.Component<ContentItemProps> {
   render() {
-    const { name, description, externalDocs, level } = this.props.item as GroupModel;
-
-    const Header = level === 2 ? H2 : H1;
+    const { name, description, externalDocs, level, type } = this.props.item as GroupModel;
+    const Header = type === 'section' ? H1 : level === 2 ? H2 : H1;
     return (
       <>
         <Row>
