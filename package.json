@@ -144,7 +144,7 @@
     "@types/node": "^13.11.1",
     "classnames": "^2.2.6",
     "decko": "^1.2.0",
-    "dompurify": "^2.0.12",
+    "dompurify": "^2.2.9",
     "eventemitter3": "^4.0.4",
     "json-pointer": "^0.6.0",
     "lunr": "2.3.8",
