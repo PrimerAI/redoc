@@ -150,7 +150,7 @@
     "lunr": "2.3.8",
     "mark.js": "^8.11.1",
     "marked": "^0.7.0",
-    "memoize-one": "~5.1.1",
+    "memoize-one": "~5.2.1",
     "mobx-react": "^7.0.5",
     "openapi-sampler": "^1.0.0-beta.18",
     "perfect-scrollbar": "^1.4.0",
